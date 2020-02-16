@@ -2,8 +2,8 @@ package meli.mutantes;
 
 public class NWSEDDiagonalCache<T> extends DiagonalCache<T> {
 	
-	public NWSEDDiagonalCache(int matrixSize) {
-		super(matrixSize);
+	public NWSEDDiagonalCache(int matrixSize, MatchStrategyFactory<T> strategyFactory) {
+		super(matrixSize, strategyFactory);
 	}
 
 	@Override

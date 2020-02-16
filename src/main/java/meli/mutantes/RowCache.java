@@ -8,10 +8,10 @@ public class RowCache<T> extends BaseCache<T> implements Observer {
 	private ColumnChange<T> lastColumnChange;
 	
 	
-	public RowCache(int matrixSize) {
-		super(matrixSize, startIndex());
+	public RowCache(int matrixSize, MatchStrategyFactory<T> strategyFactory) {
+		super(matrixSize, startIndex(), strategyFactory);
 	}
-	
+
 	private static int startIndex() {
 		return 0;
 	}

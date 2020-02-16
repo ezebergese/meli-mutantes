@@ -2,8 +2,8 @@ package meli.mutantes;
 
 public class ColumnCache<T> extends BaseCache<T> {
 	
-	public ColumnCache(int matrixSize) {
-		super(matrixSize, startIndex());
+	public ColumnCache(int matrixSize, MatchStrategyFactory<T> strategyFactory) {
+		super(matrixSize, startIndex(), strategyFactory);
 	}
 	
 	private static int startIndex() {

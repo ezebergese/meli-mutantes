@@ -9,8 +9,8 @@ public abstract class DiagonalCache<T> extends BaseCache<T> implements Observer 
 	private int matrixSize;
 	
 	
-	public DiagonalCache(int matrixSize) {
-		super(numberOfDiagonals(matrixSize), startIndex(matrixSize));
+	public DiagonalCache(int matrixSize, MatchStrategyFactory<T> strategyFactory) {
+		super(numberOfDiagonals(matrixSize), startIndex(matrixSize), strategyFactory);
 		this.matrixSize = matrixSize;
 	}
 

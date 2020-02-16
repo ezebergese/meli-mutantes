@@ -11,16 +11,16 @@ public abstract class BaseCache<T> extends Observable {
 	private int numberOfSequences;
 	
 	
-	public BaseCache(int size, int startIndex) {
-		initializeElements(size);
+	public BaseCache(int size, int startIndex, MatchStrategyFactory<T> strategyFactory) {
+		initializeElements(size, strategyFactory);
 		currentIndex = startIndex;
 		numberOfSequences = 0;
 	}
 	
-	private void initializeElements(int size) {
+	private void initializeElements(int size, MatchStrategyFactory<T> strategyFactory) {
 		elements = new ArrayList<CacheElement<T>>();
 		for (int i = 0; i < size; i++) {
-			elements.add(new CacheElement<T>());
+			elements.add(new CacheElement<T>(strategyFactory.newStrategy()));
 		}
 	}
 	

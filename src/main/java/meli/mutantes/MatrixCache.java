@@ -8,11 +8,11 @@ public class MatrixCache<T> {
 	private NESWDiagonalCache<T> neswDiagonalCache;
 	
 	
-	public MatrixCache(int size) {
-		columnCache = new ColumnCache<T>(size);
-		rowCache = new RowCache<T>(size);
-		nwseDiagonalCache = new NWSEDDiagonalCache<T>(size);
-		neswDiagonalCache = new NESWDiagonalCache<T>(size);
+	public MatrixCache(int size, MatchStrategyFactory<T> strategyFactory) {
+		columnCache = new ColumnCache<T>(size, strategyFactory);
+		rowCache = new RowCache<T>(size, strategyFactory);
+		nwseDiagonalCache = new NWSEDDiagonalCache<T>(size, strategyFactory);
+		neswDiagonalCache = new NESWDiagonalCache<T>(size, strategyFactory);
 		
 		columnCache.addObserver(rowCache);
 		rowCache.addObserver(nwseDiagonalCache);

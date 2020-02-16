@@ -35,12 +35,16 @@ public class Sequence implements Iterable<String> {
 		
 		@Override
 		public boolean hasNext() {
-			return currentRowIndex < size() || currentColumnIndex < size(); 
+			return currentRowIndex < size() && currentColumnIndex < size(); 
 		}
 
 		@Override
 		public String next() {
-			return new String(new char[] {elements[currentRowIndex++].charAt(currentColumnIndex++)});
+			String nextElement = new String(new char[] {elements[currentRowIndex].charAt(currentColumnIndex)});
+			currentColumnIndex = (++currentColumnIndex)%size();
+			currentRowIndex = (currentColumnIndex == 0) ? ++currentRowIndex : currentRowIndex;
+			
+			return nextElement;
 		}
 	}
 }
