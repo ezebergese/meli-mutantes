@@ -1,4 +1,4 @@
-package meli.mutantes;
+package meli.mutantes.model.dna;
 
 import java.util.Iterator;
 

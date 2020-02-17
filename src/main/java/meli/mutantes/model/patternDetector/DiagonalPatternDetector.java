@@ -1,15 +1,15 @@
-package meli.mutantes;
+package meli.mutantes.model.patternDetector;
 
 import java.util.Observable;
 import java.util.Observer;
 
-public abstract class DiagonalCache<T> extends BaseCache<T> implements Observer {
+public abstract class DiagonalPatternDetector<T> extends LinealPatternDetector<T> implements Observer {
 	
 	private RowChange<T> lastRowChange;
 	private int matrixSize;
 	
 	
-	public DiagonalCache(int matrixSize, MatchStrategyFactory<T> strategyFactory) {
+	public DiagonalPatternDetector(int matrixSize, PatternDetectorFactory<T> strategyFactory) {
 		super(numberOfDiagonals(matrixSize), startIndex(matrixSize), strategyFactory);
 		this.matrixSize = matrixSize;
 	}
@@ -39,5 +39,10 @@ public abstract class DiagonalCache<T> extends BaseCache<T> implements Observer 
 	public void update(Observable o, Object arg) {
 		lastRowChange = (RowChange<T>) arg;
 		addElement(lastRowChange.getElement());
+	}
+	
+	@Override
+	protected void notifyObservers(int currentIndex, T element) {
+		// This detector does not notify other detectors
 	}
 }

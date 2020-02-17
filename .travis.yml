@@ -1,0 +1,27 @@
+language: java
+
+jdk:
+  - oraclejdk8
+
+services:
+  - docker
+
+jobs:
+  include:
+    - stage: build and test
+      script: ./gradlew clean && ./gradlew build
+    - stage: build and push docker image
+      if: branch = master
+      script: 
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        - docker build . -t meli-mutantes
+        - docker images
+        - docker tag meli-mutantes $DOCKER_USERNAME/meli-mutantes
+        - docker push $DOCKER_USERNAME/meli-mutantes
+
+notifications:
+  email:
+    recipients:
+    - chrisxfs@gmail.com
+    on_success: always
+    on_failure: always

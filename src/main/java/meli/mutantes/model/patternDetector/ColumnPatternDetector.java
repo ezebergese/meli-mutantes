@@ -1,9 +1,10 @@
-package meli.mutantes;
+package meli.mutantes.model.patternDetector;
 
-public class ColumnCache<T> extends BaseCache<T> {
+public class ColumnPatternDetector<T> extends LinealPatternDetector<T> {
 	
-	public ColumnCache(int matrixSize, MatchStrategyFactory<T> strategyFactory) {
-		super(matrixSize, startIndex(), strategyFactory);
+	public ColumnPatternDetector(int matrixSize, 
+			PatternDetectorFactory<T> patternDetectorFactory) {
+		super(matrixSize, startIndex(), patternDetectorFactory);
 	}
 	
 	private static int startIndex() {

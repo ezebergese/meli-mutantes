@@ -1,4 +1,4 @@
-package meli.mutantes;
+package meli.mutantes.model.patternDetector;
 
 public class RowChange<T> {
 	

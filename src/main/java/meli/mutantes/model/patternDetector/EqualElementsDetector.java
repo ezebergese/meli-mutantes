@@ -1,13 +1,13 @@
-package meli.mutantes;
+package meli.mutantes.model.patternDetector;
 
-public class EqualElements<T> implements MatchStrategy<T> {
-	
+public class EqualElementsDetector<T> implements PatternDetector<T> {
+
 	private T element;
-	private int numberOfElementsForAMatch;
+	private int numberOfElementsInPattern;
 	private int count;
 	
-	public EqualElements(int numberOfElementsForAMatch) {
-		this.numberOfElementsForAMatch = numberOfElementsForAMatch;
+	public EqualElementsDetector(int numberOfElementsInPattern) {
+		this.numberOfElementsInPattern = numberOfElementsInPattern;
 		element = null;
 		count = 0;
 	}
@@ -23,14 +23,14 @@ public class EqualElements<T> implements MatchStrategy<T> {
 	}
 	
 	private int verifySequence() {
-		boolean sequenceFound = (count == numberOfElementsForAMatch);
-		if (sequenceFound)
-			resetCache();
+		boolean patternFound = (count == numberOfElementsInPattern);
+		if (patternFound)
+			reset();
 		
-		return (sequenceFound) ? 1 : 0;
+		return (patternFound) ? 1 : 0;
 	}
 	
-	private void resetCache() {
+	private void reset() {
 		element = null;
 		count = 0;
 	}

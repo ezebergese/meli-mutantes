@@ -1,14 +1,14 @@
-package meli.mutantes;
+package meli.mutantes.model.patternDetector;
 
 import java.util.Observable;
 import java.util.Observer;
 
-public class RowCache<T> extends BaseCache<T> implements Observer {
+public class RowPatternDetector<T> extends LinealPatternDetector<T> implements Observer {
 	
 	private ColumnChange<T> lastColumnChange;
 	
 	
-	public RowCache(int matrixSize, MatchStrategyFactory<T> strategyFactory) {
+	public RowPatternDetector(int matrixSize, PatternDetectorFactory<T> strategyFactory) {
 		super(matrixSize, startIndex(), strategyFactory);
 	}
 
