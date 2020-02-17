@@ -13,7 +13,7 @@ jobs:
     - stage: build and push docker image
       if: branch = master
       script: 
-        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
         - docker build . -t meli-mutantes
         - docker images
         - docker tag meli-mutantes $DOCKER_USERNAME/meli-mutantes
