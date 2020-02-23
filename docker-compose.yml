@@ -1,0 +1,24 @@
+version: '3.6'
+services:
+  api:
+    image: meli-mutantes-api
+    ports:
+      - "8080:8080"
+  lambda:
+    image: meli-mutantes-lambda
+  localstack:
+    image: localstack/localstack
+    ports:
+      - "4569:4569"
+      - "4570:4570"
+      - "4574:4574"
+    environment:
+      - SERVICES=dynamodb,dynamodbstreams,lambda
+      - DEBUG=${DEBUG- }
+      - DATA_DIR=${DATA_DIR- }
+      - PORT_WEB_UI=${PORT_WEB_UI- }
+      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR- }
+      - KINESIS_ERROR_PROBABILITY=${KINESIS_ERROR_PROBABILITY- }
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
