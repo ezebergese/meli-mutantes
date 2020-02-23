@@ -1,11 +1,11 @@
-version: '3.6'
+version: '3.0'
 services:
   api:
-    image: meli-mutantes-api
+    image: chrixexfs/meli-mutantes-api
     ports:
       - "8080:8080"
   lambda:
-    image: meli-mutantes-lambda
+    image: chrixexfs/meli-mutantes-lambda
   localstack:
     image: localstack/localstack
     ports:
