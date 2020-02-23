@@ -4,10 +4,22 @@
 # Ignore Gradle build output directory
 build
 
-\.classpath
+\.attach_pid*
 
 \.project
 
 \.settings/
 
-bin/
+build/
+
+meli-mutantes-api/build/
+
+meli-mutantes-lambda/build/
+
+meli-mutantes-api/bin/
+
+meli-mutantes-lambda/bin/
+
+meli-mutantes-api/\.classpath
+
+meli-mutantes-lambda/\.classpath
