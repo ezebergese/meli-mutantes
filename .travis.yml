@@ -18,7 +18,7 @@ jobs:
         - docker images
         - docker tag meli-mutantes-api $DOCKER_USERNAME/meli-mutantes-api
         - docker push $DOCKER_USERNAME/meli-mutantes-api
-        - docker build . -t meli-mutantes-lambda
+        - docker build ./meli-mutantes-lambda -t meli-mutantes-lambda
         - docker images
         - docker tag meli-mutantes-lambda $DOCKER_USERNAME/meli-mutantes-lambda
         - docker push $DOCKER_USERNAME/meli-mutantes-lambda
