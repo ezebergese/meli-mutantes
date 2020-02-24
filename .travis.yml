@@ -26,7 +26,10 @@ jobs:
         - docker images
         - docker tag meli-mutantes-lambda $DOCKER_USERNAME/meli-mutantes-lambda
         - docker push $DOCKER_USERNAME/meli-mutantes-lambda
-        - aws lambda update-function-code --function-name updateDnaAnalysisResultStats --zip-file fileb://./meli-mutantes-lambda/build/libs/meli-mutantes-lambda.jar
+        - aws lambda update-function-code 
+          --function-name updateDnaAnalysisResultStats 
+          --zip-file fileb://./meli-mutantes-lambda/build/libs/meli-mutantes-lambda.jar
+          --region us-east-1
         
 
 notifications:
