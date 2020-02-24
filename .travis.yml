@@ -26,6 +26,8 @@ jobs:
         - docker images
         - docker tag meli-mutantes-lambda $DOCKER_USERNAME/meli-mutantes-lambda
         - docker push $DOCKER_USERNAME/meli-mutantes-lambda
+        - env_variables=$(python assumerole.py $1 2>&1 >/dev/null)
+        - eval $env_variables
         
 notifications:
   email:
