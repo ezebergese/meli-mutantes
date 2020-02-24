@@ -1,11 +1,15 @@
 version: '3.0'
 services:
   api:
-    image: chrixexfs/meli-mutantes-api
+    image: meli-mutantes-api
     ports:
       - "8080:8080"
+    environment:
+      - AWS_ACCESS_KEY=dummy
+      - AWS_SECRET_KEY=dummy
+      - DYNAMODB_ENDPOINT=http://localstack:4569
   lambda:
-    image: chrixexfs/meli-mutantes-lambda
+    image: meli-mutantes-lambda
   localstack:
     image: localstack/localstack
     ports:
