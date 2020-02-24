@@ -22,6 +22,14 @@ jobs:
         - docker images
         - docker tag meli-mutantes-lambda $DOCKER_USERNAME/meli-mutantes-lambda
         - docker push $DOCKER_USERNAME/meli-mutantes-lambda
+    - stage: deploy lambda
+      if: branch = master
+      install: 
+        - pip install awscli
+      script: 
+        - aws lambda update-function-code \ 
+          --function-name updateDnaAnalysisResultStats \ 
+          --zip-file fileb://meli-mutantes-lambda/build/libs/meli-mutantes-api.jar
 
 notifications:
   email:
