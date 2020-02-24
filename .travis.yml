@@ -27,8 +27,8 @@ jobs:
       install: 
         - pip install awscli
       script: 
-        - aws lambda update-function-code \ 
-          --function-name updateDnaAnalysisResultStats \ 
+        - aws lambda update-function-code 
+          --function-name updateDnaAnalysisResultStats 
           --zip-file fileb://meli-mutantes-lambda/build/libs/meli-mutantes-api.jar
 
 notifications:

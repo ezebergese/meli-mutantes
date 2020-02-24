@@ -15,7 +15,7 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 @EnableDynamoDBRepositories(basePackages = "meli.mutantes.repository")
 public class DynamoDBConfig {
 
-    @Value("${DYNAMODB_ENDPOINT}")
+    @Value("${DYNAMODB_ENDPOINT:}")
     private String dynamoDbEndpoint;
     
     
