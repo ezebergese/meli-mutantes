@@ -29,7 +29,7 @@ jobs:
       script: 
         - aws lambda update-function-code 
           --function-name updateDnaAnalysisResultStats 
-          --zip-file fileb://meli-mutantes-lambda/build/libs/meli-mutantes-api.jar
+          --zip-file fileb://meli-mutantes-lambda/build/libs/meli-mutantes-lambda.jar
 
 notifications:
   email:
