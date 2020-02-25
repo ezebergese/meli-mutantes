@@ -30,18 +30,7 @@ jobs:
         - docker tag meli-mutantes-lambda $DOCKER_USERNAME/meli-mutantes-lambda
         - docker push $DOCKER_USERNAME/meli-mutantes-lambda
         - export AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_ROLE_ARN
-        - env_variables=$(python3 assumerole.py $1 2>&1 >/dev/null)
-        - eval $env_variables
-        - aws ecs update-service 
-          --cluster meli-cluster 
-          --service meli-service 
-          --desired-count 1 
-          --force-new-deployment 
-          --region us-east-1
-        - aws lambda update-function-code 
-          --function-name  updateDnaAnalysisResultStats 
-          --zip-file fileb://./meli-mutantes-lambda/build/libs/meli-mutantes-lambda.jar 
-          --region us-east-1
+        - python3 deploy.py
         
 notifications:
   email:

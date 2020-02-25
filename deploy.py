@@ -1,15 +1,14 @@
 import subprocess
-import sys
 import os.path
 import json
 
 
-def assume_role():
+def deploy():
     role_arn = os.getenv('AWS_ROLE_ARN')
     role_session_name = 'DeployAwsSession'
+    print("Assuming role...")
     command = 'aws sts assume-role --role-arn {} --role-session-name {}'
     output = subprocess.getoutput(command.format(role_arn, role_session_name))
-    print(output)
     output_json = json.loads(output)
     key = output_json['Credentials']['AccessKeyId']
     secret = output_json['Credentials']['SecretAccessKey']
@@ -18,12 +17,20 @@ def assume_role():
     my_env["AWS_ACCESS_KEY_ID"] = key
     my_env["AWS_SECRET_ACCESS_KEY"] = secret
     my_env["AWS_SESSION_TOKEN"] = access_token
+
+    print("Deploying to ecs...")
+    command = 'aws ecs update-service --cluster meli-cluster --service meli-service ' \
+    + '--service meli-service --desired-count 1 --force-new-deployment --region us-east-1'
+    output = subprocess.getoutput(command)
+
+    print("Deploying lambda...")
+    command = 'aws lambda update-function-code --function-name  updateDnaAnalysisResultStats ' \
+    + '--zip-file fileb://./meli-mutantes-lambda/build/libs/meli-mutantes-lambda.jar ' \
+    + '--region us-east-1'
+    output = subprocess.getoutput(command)
+
     return my_env
 
 
 if __name__ == '__main__':
-    env = assume_role()
-    variables = 'export AWS_ACCESS_KEY_ID=' + env['AWS_ACCESS_KEY_ID'] \
-        + ' AWS_SECRET_ACCESS_KEY=' + env['AWS_SECRET_ACCESS_KEY'] \
-        + ' AWS_SESSION_TOKEN=' + env['AWS_SESSION_TOKEN']
-    sys.exit(variables)
+    deploy()
