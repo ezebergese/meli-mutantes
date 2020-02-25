@@ -13,6 +13,9 @@ jobs:
       script: ./gradlew clean && ./gradlew build
     - stage: build, test and deploy
       if: branch = master
+      before_install:
+        - sudo apt-get update
+        - sudo apt-get install python3
       install: 
         - pip install awscli
       script: 
@@ -26,7 +29,7 @@ jobs:
         - docker images
         - docker tag meli-mutantes-lambda $DOCKER_USERNAME/meli-mutantes-lambda
         - docker push $DOCKER_USERNAME/meli-mutantes-lambda
-        - env_variables=$(python assumerole.py $1 2>&1 >/dev/null)
+        - env_variables=$(python3 assumerole.py $1 2>&1 >/dev/null)
         - eval $env_variables
         
 notifications:
