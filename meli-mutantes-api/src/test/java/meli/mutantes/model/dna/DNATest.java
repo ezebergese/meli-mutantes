@@ -10,8 +10,6 @@ import java.nio.file.Paths;
 
 import org.junit.Test;
 
-import meli.mutantes.model.dna.DNA;
-
 public class DNATest {
 	
 	private String[] createSequenceFromFile(String fileName) {
@@ -22,6 +20,22 @@ public class DNATest {
 		}
 	}
 	
+	@Test(expected = InvalidSequenceException.class)
+    public void givenAnInvalidSequence_whenVerifingIfIsMutant_shouldThrowInvalidSequenceException() {
+    	String[] mutantSequence = new String[] {"ATGCGA","CAGTGC","TTATTT","AGACGG","CGCTCA","TCACT"};
+    	DNA dna = new DNA(mutantSequence);
+    	
+    	dna.isMutant();
+	}
+	
+	@Test
+    public void givenAnSequenceOfSizeTwo_whenVerifingIfIsMutant_shouldThrowInvalidSequenceException() {
+    	String[] mutantSequence = new String[] {"AT","CA"};
+    	DNA dna = new DNA(mutantSequence);
+    	
+    	assertThat(dna.isMutant(), is(false));
+	}
+    
 	@Test
     public void givenASequenceOfSizeSixWithNoPatterns_whenVerifingIfIsMutant_shouldReturnFalse() {
     	String[] mutantSequence = new String[] {"ATGCGA","CAGTGC","TTATTT","AGACGG","CGCTCA","TCACTG"};

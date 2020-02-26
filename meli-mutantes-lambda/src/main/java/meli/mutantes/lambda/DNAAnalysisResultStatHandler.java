@@ -19,7 +19,7 @@ import com.amazonaws.util.StringUtils;
 
 public class DNAAnalysisResultStatHandler implements RequestHandler<DynamodbEvent, Void>{
 	
-	private static final DynamoDB dynamoDB = createDynamoDB();
+	private static DynamoDB dynamoDB = createDynamoDB();
 	
 	private static DynamoDB createDynamoDB() {
 		String endpoint = System.getenv("DYNAMODB_ENDPOINT");
@@ -39,6 +39,14 @@ public class DNAAnalysisResultStatHandler implements RequestHandler<DynamodbEven
 				updateStats(item);
 		}
 		return null;
+	}
+	
+	/*
+	 * For testing
+	 */
+	public Void handleRequest(DynamodbEvent event, Context context, DynamoDB dynamoDBToUse) {
+		dynamoDB = dynamoDBToUse;
+		return this.handleRequest(event, context);
 	}
 	
 	private void updateStats(Map<String, AttributeValue> item) {

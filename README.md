@@ -14,8 +14,11 @@ Para resolver el problema se crearon los siguientes objetos, cada uno con respon
 
 La solución está pensada para matrices cuadradas y para que el recorrido se haga por fila-columna. Por ejemplo, si tenemos esta matriz:
 A  B  C
+
 D  E  F
+
 G  H  I
+
 
 El recorrido se hará en este orden: A-B-C-D-E-F-G-H-I
 
