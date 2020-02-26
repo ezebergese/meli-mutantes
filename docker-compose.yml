@@ -1,11 +1,15 @@
-version: '3.6'
+version: '3.0'
 services:
   api:
-    image: meli-mutantes-api
+    image: chrixexfs/meli-mutantes-api
     ports:
       - "8080:8080"
+    environment:
+      - AWS_ACCESS_KEY=dummy
+      - AWS_SECRET_KEY=dummy
+      - DYNAMODB_ENDPOINT=http://localstack:4569
   lambda:
-    image: meli-mutantes-lambda
+    image: chrixexfs/meli-mutantes-lambda
   localstack:
     image: localstack/localstack
     ports:
@@ -20,5 +24,6 @@ services:
       - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR- }
       - KINESIS_ERROR_PROBABILITY=${KINESIS_ERROR_PROBABILITY- }
       - DOCKER_HOST=unix:///var/run/docker.sock
+      - DYNAMODB_ENDPOINT=http://localstack:4569
     volumes:
       - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
