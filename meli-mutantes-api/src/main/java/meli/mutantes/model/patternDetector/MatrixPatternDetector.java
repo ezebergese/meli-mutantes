@@ -21,10 +21,10 @@ public class MatrixPatternDetector<T> {
 	
 	public int addElement(T element) {
 		columnPatternDetector.addElement(element);
-		return getAllSequences();
+		return getAllPatterns();
 	}
 	
-	private int getAllSequences() {
+	private int getAllPatterns() {
 		return columnPatternDetector.getPatternsFoundCount()
 				+ rowPatternDetector.getPatternsFoundCount()
 				+ nwseDiagonalPatternDetector.getPatternsFoundCount()
