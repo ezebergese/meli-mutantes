@@ -55,11 +55,19 @@ public class Sequence implements Iterable<String> {
 
 		@Override
 		public String next() {
-			String nextElement = new String(new char[] {elements[currentRowIndex].charAt(currentColumnIndex)});
+			String nextElement = getNextElement();
 			currentColumnIndex = (++currentColumnIndex)%size();
 			currentRowIndex = (currentColumnIndex == 0) ? ++currentRowIndex : currentRowIndex;
 			
 			return nextElement;
+		}
+
+		private String getNextElement() {
+			try {
+				return new String(new char[] {elements[currentRowIndex].charAt(currentColumnIndex)});
+			} catch(IndexOutOfBoundsException e) {
+				throw new InvalidSequenceException();
+			}
 		}
 	}
 }

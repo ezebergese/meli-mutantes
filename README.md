@@ -14,18 +14,36 @@ Para resolver el problema se crearon los siguientes objetos, cada uno con respon
 
 La solución está pensada para matrices cuadradas y para que el recorrido se haga por fila-columna. Por ejemplo, si tenemos esta matriz:
 A  B  C
+
 D  E  F
+
 G  H  I
+
 
 El recorrido se hará en este orden: A-B-C-D-E-F-G-H-I
 
 A continuación se presentan diagramas UML que muestran el diseño y un ejemplo de llamada a isMutant.
 
+### Diagrama de clases:
+
 ![alt uml_class](/uml/uml_class.png)
+
+### Diagramas de secuencia
+
+##### Consulta si un ADN es mutante
+
 ![alt uml_sequence_1](/uml/uml_sequence_1.png)
+
+##### Consulta si un ADN es mutante
 ![alt uml_sequence_2](/uml/uml_sequence_2.png)
+
+##### Agregar elemento a ColumnPatternDetector
 ![alt uml_sequence_3](/uml/uml_sequence_3.png)
+
+##### Agregar elemento a RowPatternDetector
 ![alt uml_sequence_4](/uml/uml_sequence_4.png)
+
+##### Agregar elemento a DiagonalPatternDetector
 ![alt uml_sequence_5](/uml/uml_sequence_5.png)
 
 # Herramientas, lenguajes y servicios utilizados
